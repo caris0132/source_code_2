@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "31b175510be492eecd851e7badadcf0d",
+    "content-hash": "2669930d147f6a4ebef92ddc78848994",
     "packages": [
         {
             "name": "cakephp/cache",
@@ -296,6 +296,42 @@
                 "utility"
             ],
             "time": "2018-05-31T20:11:56+00:00"
+        },
+        {
+            "name": "lincanbin/php-pdo-mysql-class",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lincanbin/PHP-PDO-MySQL-Class.git",
+                "reference": "bb86ef1ee9d98444714a51fbf7754896012b0e5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lincanbin/PHP-PDO-MySQL-Class/zipball/bb86ef1ee9d98444714a51fbf7754896012b0e5d",
+                "reference": "bb86ef1ee9d98444714a51fbf7754896012b0e5d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.6"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache"
+            ],
+            "authors": [
+                {
+                    "name": "lincanbin",
+                    "email": "lincanbin@hotmail.com"
+                }
+            ],
+            "description": "A PHP MySQL PDO class similar to the the Python MySQLdb, which supports parameter binding when using 'WHERE IN' statement.",
+            "keywords": [
+                "database",
+                "mysql",
+                "pdo"
+            ],
+            "time": "2015-04-30T16:08:09+00:00"
         },
         {
             "name": "robmorgan/phinx",
