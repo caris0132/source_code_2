@@ -9,11 +9,13 @@ $config_url = $_SERVER["SERVER_NAME"] . '/source_web_2';
 #config minifier 
 $config_minifier = true;
 
-$config['database']['servername'] = 'localhost';
+$config['database']['type'] = 'mysql';
+$config['database']['host'] = 'localhost';
 $config['database']['username'] = 'root';
 $config['database']['password'] = 'mysql';
-$config['database']['database'] = 'source_web_2';
-$config['database']['refix'] = 'table_';
+$config['database']['dbname'] = 'source_web_2';
+$config['database']['charset'] = 'utf8';
+$config['database']['prefix'] = 'table_';
 $_SESSION['ckfinder_baseUrl'] = $config_url;
 $ip_host = '127.0.0.1';
 $mail_host = 'noreply@demo98.ninavietnam.com.vn';

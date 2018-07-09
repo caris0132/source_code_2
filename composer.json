@@ -1,6 +1,4 @@
 {
     "require": {
-        "robmorgan/phinx": "^0.10.3",
-        "lincanbin/php-pdo-mysql-class": "^1.0"
     }
 }

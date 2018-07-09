@@ -107,7 +107,14 @@
 
 .navbar-nav .dropdown-menu {
   margin-top: -40px !important; }
-
+pre {
+  position: relative;
+  z-index: 9999;
+}
+.stt-man-input {
+  max-width: 40px;
+  text-align: center;
+}
 .label-count {
   position: absolute;
   top: 2px;
@@ -3427,6 +3434,10 @@ section.content {
     padding: 5px 20px !important; }
 
 /* Checkbox & Radio ============================ */
+.table [type="checkbox"] + label {
+  margin: 0;
+  display: inline;
+}
 [type="checkbox"] + label {
   padding-left: 26px;
   height: 25px;
