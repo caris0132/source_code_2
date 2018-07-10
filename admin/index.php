@@ -1,9 +1,9 @@
 <?php
 session_start();
+error_reporting(0);
 @define ( '_template' , './templates/');
 @define ( '_source' , './sources/');
 @define ( '_lib' , './lib/');
-require '../vendor/autoload.php';
 
 include_once _lib."config.php";
 include_once _lib."constant.php";
@@ -26,6 +26,8 @@ if($source!="") include _source.$source.".php";
         <link rel="stylesheet" type="text/css" href="<?= $item ?>">
     <?php endforeach ?>
     <!-- Jquery Core Js -->
+    <script>var base_url = "<?= $config_url ?>";  </script>
+
     <script src="plugins/jquery/jquery.min.js"></script>
     <title>Administrator</title>
 </head>

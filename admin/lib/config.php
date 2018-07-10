@@ -21,7 +21,9 @@ $ip_host = '127.0.0.1';
 $mail_host = 'noreply@demo98.ninavietnam.com.vn';
 $pass_mail = '1234qwer!@';
 
-$config['lang'] = array('' => 'Tiếng Việt'); #Danh sách ngôn ngữ hỗ trợ
+$_SESSION['ckfinder_baseUrl'] = $config_url;
+
+$config['lang'] = array('' => 'Tiếng Việt', 'en' => "Tiếng anh"); #Danh sách ngôn ngữ hỗ trợ
 $config['phi'] = 0; #1-Thành phố/2-Quận/huyện
 $config['author']['name'] = 'Nguyễn Đức Trí';
 $config['author']['email'] = 'nguyenductri.nina@gmail.com';

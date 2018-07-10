@@ -9,10 +9,15 @@ $urlcu .= (isset($_REQUEST['id_cat'])) ? "&id_cat=".addslashes($_REQUEST['id_cat
 $urlcu .= (isset($_REQUEST['type'])) ? "&type=".addslashes($_REQUEST['type']) : "";
 $urlcu .= (isset($_REQUEST['p'])) ? "&p=".addslashes($_REQUEST['p']) : "";
 
+
 switch ($act) {
 	case 'man':
 		get_items();
 		$template = "news/items";
+		break;
+
+	case "add":
+		$template = "news/item_add";
 		break;
 	
 	

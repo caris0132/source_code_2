@@ -10,9 +10,18 @@
 					<h2>
 						QUẢN LÝ BÀI VIẾT
 					</h2>
+					
 				</div>
 
 				<div class="body">
+					<div class="row">
+						<div class="col-md-1">
+							<a class="btn btn-primary waves-effect" href="<?= $create_url . "&act=add" ?>" title="Thêm">Thêm</a>
+						</div>
+						<div class="col-md-2">
+							<button type="button" class="btn btn-danger waves-effect">Xóa chọn</button>
+						</div>
+					</div>
 					<div class="table-responsive">
 						<table class="table table-bordered table-striped table-hover js-basic-example dataTable">
 							<thead>
