@@ -60,41 +60,47 @@ if ($com == 'index' || $com == '') {
 	</script>
 <?php endif ?>
 
-<?php if ($act == 'add'): ?>
-	<script src="ckeditor/ckeditor.js"></script>
-<?php endif ?>
 
 <script>
-$(document).ready(function() {
-	$('.ckeditor').each(function(index, el) {
-		var id=$(this).attr('id');
-		var editor = CKEDITOR.replace( id, {
-		height : 400,
-		entities: false,
-        basicEntities: false,
-        entities_greek: false,
-        entities_latin: false,
-		skin:'office2013',
-		filebrowserBrowseUrl : 'ckfinder/ckfinder.html',
-		filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',
-		filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',
-		filebrowserUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-		filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-		filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-		allowedContent:
-			'h1 h2 h3 p blockquote strong em;' +
-			'a[!href];' +
-			'img(left,right)[!src,alt,width,height];' +
-			'table tr th td caption;' +
-			'span{!font-family};' +
-			'span{!color};' +
-			'span(!marker);' +
-			'del ins'
+	$(document).ready(function() {
+		$('.ckeditor').each(function(index, el) {
+			var id=$(this).attr('id');
+			var editor = CKEDITOR.replace( id, {
+				height : 400,
+				entities: false,
+				basicEntities: false,
+				entities_greek: false,
+				entities_latin: false,
+				skin:'office2013',
+				filebrowserBrowseUrl : 'ckfinder/ckfinder.html',
+				filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',
+				filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',
+				filebrowserUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+				filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+				filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+				allowedContent:
+				'h1 h2 h3 p blockquote strong em;' +
+				'a[!href];' +
+				'img(left,right)[!src,alt,width,height];' +
+				'table tr th td caption;' +
+				'span{!font-family};' +
+				'span{!color};' +
+				'span(!marker);' +
+				'del ins'
+			});
+
+
+
 		});
-
-
-
 	});
-});
 	
 </script>
+
+
+<?php if ( in_array($act, ['add','edit']) ): ?>
+	<script>
+		$("#file_muti").fileinput({
+			theme: 'fa',
+		});
+	</script>
+	<?php endif ?>

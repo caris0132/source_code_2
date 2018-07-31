@@ -29,6 +29,7 @@ if($source!="") include _source.$source.".php";
     <script>var base_url = "<?= $config_url ?>";  </script>
 
     <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
     <title>Administrator</title>
 </head>
 <body class="theme-red">

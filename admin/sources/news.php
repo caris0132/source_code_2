@@ -1,8 +1,8 @@
-<?php	if(!defined('_source')) die("Error");
+<?php
 
 $act = (isset($_REQUEST['act'])) ? addslashes($_REQUEST['act']) : "";
 
-$urlcu = "";
+$urlcu = $create_url;
 $urlcu .= (isset($_REQUEST['id_danhmuc'])) ? "&id_danhmuc=".addslashes($_REQUEST['id_danhmuc']) : "";
 $urlcu .= (isset($_REQUEST['id_list'])) ? "&id_list=".addslashes($_REQUEST['id_list']) : "";
 $urlcu .= (isset($_REQUEST['id_cat'])) ? "&id_cat=".addslashes($_REQUEST['id_cat']) : "";

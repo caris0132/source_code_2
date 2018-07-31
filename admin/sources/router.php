@@ -2,6 +2,9 @@
 $com = (isset($_REQUEST['com'])) ? addslashes($_REQUEST['com']) : "";
 $act = (isset($_REQUEST['act'])) ? addslashes($_REQUEST['act']) : "";
 
+$curent_url = "index.php" . '?' . $_SERVER['QUERY_STRING'];
+
+
 $create_url = "index.php";
 if ($_REQUEST['com']) {
 	$create_url .= "?com=" . $_REQUEST['com'];
@@ -10,6 +13,8 @@ if ($_REQUEST['com']) {
 if ($_REQUEST['type']) {
 	$create_url .= "&type=" . $_REQUEST['type'];
 }
+
+
 
 $db = new PDODb($config['database']);
 
