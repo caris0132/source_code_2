@@ -32,6 +32,7 @@ if ($act == 'man') {
 if ( in_array($act, ['add','edit']) ) {
 	array_push($css_file, "assets/bootstrap_fileinput/css/fileinput.css");
 	array_push($css_file, "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+	array_push($js_file, "plugins/jquery-validation/jquery.validate.js");
 	array_push($js_file, "assets/bootstrap_fileinput/js/fileinput.js");
 	array_push($js_file, "assets/bootstrap_fileinput/js/locales/vi.js");
 	array_push($js_file, "assets/bootstrap_fileinput/themes/fa/theme.js");

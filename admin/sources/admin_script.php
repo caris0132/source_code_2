@@ -101,6 +101,28 @@ if ($com == 'index' || $com == '') {
 	<script>
 		$("#file_muti").fileinput({
 			theme: 'fa',
+			showUpload: false
+		});
+
+		$("#file_single").fileinput({
+			theme: 'fa',
+			showUpload: false
+		});
+
+		$(function() {
+			$('#form_validation').validate({
+
+				highlight: function (input) {
+					$(input).parents('.form-line').addClass('error');
+				},
+				unhighlight: function (input) {
+					$(input).parents('.form-line').removeClass('error');
+				},
+				errorPlacement: function (error, element) {
+					$(element).parents('.form-group').append(error);
+				}
+			});
 		});
 	</script>
-	<?php endif ?>
+
+<?php endif ?>
