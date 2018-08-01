@@ -5,8 +5,11 @@ error_reporting(0);
 @define ( '_source' , './sources/');
 @define ( '_lib' , './lib/');
 
+require '../vendor/autoload.php';
+
 include_once _lib."config.php";
 include_once _lib."constant.php";
+include_once _lib."functions.php";
 include_once _lib."database.class.php";
 include_once _source."router.php";
 include_once _source."admin_js_css.php";
@@ -22,8 +25,8 @@ if($source!="") include _source.$source.".php";
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <?php foreach ($css_file as $item): ?>
-        <link rel="stylesheet" type="text/css" href="<?= $item ?>">
+    <?php foreach ($css_file as $item_css): ?>
+        <link rel="stylesheet" type="text/css" href="<?= $item_css ?>">
     <?php endforeach ?>
     <!-- Jquery Core Js -->
     <script>var base_url = "<?= $config_url ?>";  </script>

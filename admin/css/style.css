@@ -265,6 +265,10 @@ pre {
   margin-left: -10px;
   margin-top: 4px; }
 
+img {
+  max-width: 100%
+}
+
 .col-indigo .navbar .bars:hover {
   background-color: rgba(0, 0, 0, 0.08); }
 

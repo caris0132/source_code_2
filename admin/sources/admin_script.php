@@ -101,12 +101,13 @@ if ($com == 'index' || $com == '') {
 	<script>
 		$("#file_muti").fileinput({
 			theme: 'fa',
-			showUpload: false
+			showUpload: false,
 		});
 
 		$("#file_single").fileinput({
 			theme: 'fa',
-			showUpload: false
+			showUpload: false,
+			dropZoneEnabled: false
 		});
 
 		$(function() {

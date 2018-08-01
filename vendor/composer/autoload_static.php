@@ -6,9 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitbb8317b72d684a9a3602810e9b9dd382
 {
+    public static $prefixesPsr0 = array (
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixesPsr0 = ComposerStaticInitbb8317b72d684a9a3602810e9b9dd382::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -1400,7 +1400,7 @@ class PDODb
     /**
      * Reset PDODb internal variables
      */
-    private function reset()
+    public function reset()
     {
         $this->forUpdate       = false;
         $this->groupBy         = [];

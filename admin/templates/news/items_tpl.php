@@ -59,7 +59,7 @@
 											<label for="basic_checkbox_<?= $item['id'] ?>"></label>
 										</td>
 										<td><input class="stt-man-input" type="number" name="" value="<?= $item['stt'] ?>" placeholder=""></td>
-										<td><?= $item['ten'] ?></td>
+										<td><a href="<?= $urlcu ?>&act=edit&id=<?= $item['id'] ?>" title="<?= $item['ten'] ?>"><?= $item['ten'] ?></a></td>
 										<td>
 											<div class="switch">
 												<label>

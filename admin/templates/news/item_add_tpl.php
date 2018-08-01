@@ -2,7 +2,9 @@
 
 	<div class="row clearfix">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <form action="index.php?com=news&act=save" id="form_validation" method="POST" enctype="multipart/form-data">
+            <form action="<?= $urlcu ?>&act=save" id="form_validation" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= $_REQUEST['id'] ?>">
+                <input type="hidden" name="data[type]" value="<?= $_REQUEST['type'] ?>">
 			<div class="card">
 				<div class="header">
 					<h2>
@@ -20,7 +22,11 @@
                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                             <div class="form-group form-float">
                                 <h2 class="card-inside-title">Hình ảnh</h2>
-                                
+                                <?php if ($act == 'edit'): ?>
+                                    <div class="col-md-6">
+                                        <img src="<?= _upload_tintuc . $item['photo'] ?>" alt="<?= $item['ten'] ?>">
+                                    </div>
+                                <?php endif ?>
                                 <div class="file-loading">
                                     <input id="file_single" class="file" type="file"  name="file">
                                 </div>
@@ -57,14 +63,14 @@
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <h2 class="card-inside-title">Tên bài viết</h2>
-                                        <input type="text" class="form-control" name="data[ten<?= $lang ?>]" required placeholder="Title">
+                                        <input type="text" class="form-control" name="data[ten<?= $lang ?>]" value="<?= $item['ten'.$lang] ?>" required placeholder="Title">
                                     </div>
                                     
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <h2 class="card-inside-title">Mô tả ngắn</h2>
-                                        <textarea rows="4" name="data[mota<?= $lang ?>]" class="form-control no-resize" placeholder="Mô tả ngắn..."></textarea>
+                                        <textarea rows="4" name="data[mota<?= $lang ?>]" class="form-control no-resize" placeholder="Mô tả ngắn..."><?= $item['mota'.$lang] ?></textarea>
                                     </div>
                                     
                                 </div>
@@ -72,7 +78,7 @@
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <h2 class="card-inside-title">Nội dung</h2>
-                                        <textarea rows="4" id="noidung<?= $lang ?>" name="data[noidung<?= $lang ?>]" class="ckeditor form-control no-resize" placeholder="Nội dung..."></textarea>
+                                        <textarea rows="4" id="noidung<?= $lang ?>" name="data[noidung<?= $lang ?>]" class="ckeditor form-control no-resize" placeholder="Nội dung..."><?= $item['noidung'.$lang] ?></textarea>
                                     </div>
                                     
                                 </div>
