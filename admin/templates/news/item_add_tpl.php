@@ -126,6 +126,31 @@
 
                             
                         </div>
+
+                        <div class="row clearfix">
+                            <div class="col-sm-3">
+                                <h2 class="card-inside-title">Nổi bật</h2>
+                                <div class="switch">
+                                    <label>
+                                        OFF
+                                        <input <?= !isset($item['noibat']) || $item['noibat'] == 1 ? 'checked' : '' ?> type="checkbox">
+                                        <span class="lever"></span>
+                                        ON
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <h2 class="card-inside-title">Hiển thị</h2>
+                                <div class="switch">
+                                    <label>
+                                        OFF
+                                        <input <?= !isset($item['hienthi']) || $item['hienthi'] == 1 ? 'checked' : '' ?> type="checkbox">
+                                        <span class="lever"></span>
+                                        ON
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         
                         <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
                         <button type="reset" class="btn btn-default">Reset</button>

@@ -124,9 +124,6 @@ function upload_photos($file, $folder, $filename ='')
 
 	$file_ext = explode('.',$file['name']);
 	$file_ext=strtolower(end($file_ext));
-
-
-
 	$expensions= array("jpeg","jpg","png");
 
 	$name = basename($file['name'], '.'.$file_ext);
@@ -141,12 +138,7 @@ function upload_photos($file, $folder, $filename ='')
 
 		return $filename;
 	}
-
-	var_dump($file);
-
-
 	return false;
-
 }
 
 function create_thumb($file, $width=200, $height=200, $thumb_type, $folder, $file_name='')
