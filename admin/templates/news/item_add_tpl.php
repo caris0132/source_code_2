@@ -1,6 +1,19 @@
+<?php 
+$db->where('id_hinhanh', $item['id']);
+$db->where('type', $item['type']);
+$db->orderBy('stt', 'ASC');
+$db->orderBy('id', 'DESC');
+$ds_photo = $db->get('hinhanh');
+ ?>
+
 <div class="container-fluid">
 
 	<div class="row clearfix">
+        <ol class="breadcrumb breadcrumb-bg-pink">
+            <li><a href="index.php" title="Home"><i class="material-icons">home</i> Home</a></li>
+            <li><a href="<?= $urlcu ?>&act=man" title="Quản lý bài viết"><i class="material-icons">library_books</i> Quản lý bài viết</a></li>
+            <li><a href="" title="Home"><i class="material-icons">library_books</i> Thêm</a></li>
+        </ol>
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <form action="<?= $urlcu ?>&act=save" id="form_validation" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $_REQUEST['id'] ?>">
@@ -133,7 +146,7 @@
                                 <div class="switch">
                                     <label>
                                         OFF
-                                        <input <?= !isset($item['noibat']) || $item['noibat'] == 1 ? 'checked' : '' ?> type="checkbox">
+                                        <input name="data[noibat]" <?= !isset($item['noibat']) || $item['noibat'] == 1 ? 'checked' : '' ?> type="checkbox">
                                         <span class="lever"></span>
                                         ON
                                     </label>
@@ -144,7 +157,7 @@
                                 <div class="switch">
                                     <label>
                                         OFF
-                                        <input <?= !isset($item['hienthi']) || $item['hienthi'] == 1 ? 'checked' : '' ?> type="checkbox">
+                                        <input name="data[hienthi]" <?= !isset($item['hienthi']) || $item['hienthi'] == 1 ? 'checked' : '' ?> type="checkbox">
                                         <span class="lever"></span>
                                         ON
                                     </label>

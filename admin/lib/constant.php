@@ -38,5 +38,11 @@
 	@define ( _format_duoixemtailieu_l , "<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .doc, .xls, .ppt, .pdf &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>");
 	@define ( _format_link_l , "<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; http://tenmien &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>");
 	@define ( _format_video_l , "<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://www.youtube.com/watch?v=<span style='color:red;'>6DlstZn6WvI</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copy phần link màu đỏ&nbsp;&nbsp;&nbsp;&nbsp;</strong>");
+
+	// constant các giá trị phân quyền
+	const PER_VIEW = 1;
+	const PER_ADD = 2;
+	const PER_EDIT = 4;
+	const PER_DELETE = 8;
 	
 ?>

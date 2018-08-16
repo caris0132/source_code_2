@@ -1,6 +1,7 @@
 <?php 
 $com = (isset($_REQUEST['com'])) ? addslashes($_REQUEST['com']) : "";
 $act = (isset($_REQUEST['act'])) ? addslashes($_REQUEST['act']) : "";
+$type = (isset($_REQUEST['type'])) ? addslashes($_REQUEST['type']) : "";
 
 $curent_url = "index.php" . '?' . $_SERVER['QUERY_STRING'];
 
@@ -18,17 +19,44 @@ $urlcu .= (isset($_REQUEST['p'])) ? "&p=".addslashes($_REQUEST['p']) : "";
 
 $db = new PDODb($config['database']);
 
+
 $items; $item;
+
+if ($act == 'login') {
+	return;
+}
+
+if($act !='login' && !($_SESSION['login']['username'] && $_SESSION['isLoggedIn'])){
+	redirect("index.php?com=user&act=login");
+}
+
+$db->where('username', $_SESSION['login']['username']);
+$user = $db->getOne('user');
+if (!$user) {
+	redirect("index.php?com=user&act=logout");
+}
+$id_login = $user['id'];
+$is_root = $user['is_root'];
+
+//get info user login
+
 
 switch ($com) {
 	case 'news':
-		$source = 'news';
-		break;
+	$source = 'news';
+	break;
+
+	case 'user':
+	$source = 'user';
+	break;
 	
 	default: 
-		$source = "";
-		$template = "dashboard";
-		break;
+	$source = "";
+	$template = "dashboard";
+	break;
 }
 
- ?>
+if (!check_quyen($type, $act)) {
+	transfer('Bạn không có quyền truy cập mục này', 'index.php?com=user&act=login');
+}
+?>

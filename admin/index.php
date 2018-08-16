@@ -35,40 +35,86 @@ if($source!="") include _source.$source.".php";
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
     <title>Administrator</title>
 </head>
-<body class="theme-red">
-	
-    <!-- Overlay For Sidebars -->
-    <div class="overlay"></div>
-    <!-- #END# Overlay For Sidebars -->
-    <!-- Top Bar -->
-    <nav class="navbar">
-        <?php include _template . 'header_tpl.php'; ?>
-    </nav>
-    <!-- #Top Bar -->
+<?php if ($_SESSION['login']['username'] && $_SESSION['isLoggedIn']): ?>
+    <body class="theme-red">
 
-    <section>
-        <!-- Left Sidebar -->
-        <aside id="leftsidebar" class="sidebar">
-            <?php include _template . 'left_tpl.php' ; ?>
-        </aside>
-        <!-- #END# Left Sidebar -->
-        <!-- Right Sidebar -->
-        <aside id="rightsidebar" class="right-sidebar">
-            <?php include _template . 'right_tpl.php' ; ?>
-        </aside>
-        <!-- #END# Right Sidebar -->
-    </section>
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <!-- #END# Overlay For Sidebars -->
+        <!-- Top Bar -->
+        <nav class="navbar">
+            <?php include _template . 'header_tpl.php'; ?>
+        </nav>
+        <!-- #Top Bar -->
 
-    <section class="content">
-        <?php include _template . $template . '_tpl.php' ; ?>
-    </section>
+        <section>
+            <!-- Left Sidebar -->
+            <aside id="leftsidebar" class="sidebar">
+                <?php include _template . 'left_tpl.php' ; ?>
+            </aside>
+            <!-- #END# Left Sidebar -->
+            <!-- Right Sidebar -->
+            <aside id="rightsidebar" class="right-sidebar">
+                <?php include _template . 'right_tpl.php' ; ?>
+            </aside>
+            <!-- #END# Right Sidebar -->
+        </section>
 
-    
+        <section class="content">
+            <?php include _template . $template . '_tpl.php' ; ?>
+        </section>
 
-    <?php foreach ($js_file as $item): ?>
-        <script type="text/javascript" src="<?= $item ?>"></script>
-    <?php endforeach ?>
-    <?php include _source . 'admin_script.php'; ?>
 
-</body>
+
+        <?php foreach ($js_file as $item): ?>
+            <script type="text/javascript" src="<?= $item ?>"></script>
+        <?php endforeach ?>
+        <?php include _source . 'admin_script.php'; ?>
+
+    </body>
+<?php else: ?>
+    <body class="login-page">
+        <div class="login-box">
+            <div class="logo">
+                <a href="javascript:void(0);">Admin<b>NDT</b></a>
+                <small>Administrator - NDT Design</small>
+            </div>
+            <div class="card">
+                <div class="body">
+                    <form id="sign_in" method="POST">
+                        <div class="msg">Sign in to start your session</div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required autofocus>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            
+                            <div class="col-xs-4 right">
+                                <button class="js-btn-login btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <?php foreach ($js_file as $item): ?>
+            <script type="text/javascript" src="<?= $item ?>"></script>
+        <?php endforeach ?>
+        <?php include _source . 'admin_script.php'; ?>
+    </body>
+<?php endif ?>
 </html>

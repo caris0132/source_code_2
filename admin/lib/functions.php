@@ -1,5 +1,10 @@
 <?php 
 
+//Chuyển trang không thông báo
+function redirect($url=''){
+	echo '<script language="javascript">window.location = "'.$url.'" </script>';
+	exit();
+}
 
 function stripUnicode($str){
 	if(!$str) return false;
@@ -69,17 +74,17 @@ function delete_file($file){
 
 function reArrayFiles(&$file_post) {
 
-    $file_ary = array();
-    $file_count = count($file_post['name']);
-    $file_keys = array_keys($file_post);
+	$file_ary = array();
+	$file_count = count($file_post['name']);
+	$file_keys = array_keys($file_post);
 
-    for ($i=0; $i<$file_count; $i++) {
-        foreach ($file_keys as $key) {
-            $file_ary[$i][$key] = $file_post[$key][$i];
-        }
-    }
+	for ($i=0; $i<$file_count; $i++) {
+		foreach ($file_keys as $key) {
+			$file_ary[$i][$key] = $file_post[$key][$i];
+		}
+	}
 
-    return $file_ary;
+	return $file_ary;
 }
 
 function upload_image($file, $folder, $filename ='')
@@ -117,6 +122,9 @@ function upload_image($file, $folder, $filename ='')
 function upload_photos($file, $folder, $filename ='')
 {
 	global $imagine;
+	if (empty($file)) {
+		return false;
+	}
 	$file_name = $file['name'];
 	$file_size = $file['size'];
 	$file_tmp = $file['tmp_name'];
@@ -143,6 +151,9 @@ function upload_photos($file, $folder, $filename ='')
 
 function create_thumb($file, $width=200, $height=200, $thumb_type, $folder, $file_name='')
 {
+	if (empty($file)) {
+		return false;
+	}
 
 	global $imagine ;
 	$new_width   = (int)$width ? (int)$width : 200;
@@ -169,10 +180,30 @@ function create_thumb($file, $width=200, $height=200, $thumb_type, $folder, $fil
 
 
 	$imagine->open($image_url)
-    ->thumbnail($size, $mode)
-    ->save($folder . $new_file);
+	->thumbnail($size, $mode)
+	->save($folder . $new_file);
 
-    return $new_file;
+	return $new_file;
 }
 
- ?>
+function check_quyen($type, $act)
+{
+	global $db , $id_login, $is_root;
+
+	if ($is_root) {
+		return true;
+	}
+
+	return false;
+
+}
+
+function phanquyen_menu($ten,$com,$act,$type){
+	global $db, $is_root;
+
+	if ($_SESSION['isLoggedIn'] && check_quyen($type, $act)) {
+		echo  "<li><a href='index.php?com=".$com."&act=".$act."&type=".$type."'>".$ten."</a></li>";
+	}
+}
+
+?>
