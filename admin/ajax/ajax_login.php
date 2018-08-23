@@ -10,10 +10,9 @@ if ($_POST['username'] && $_POST['password']) {
 
 	$db->where('username', $username);
 	$db->where('password', md5($password));
+	$db->where('type', 'admin');
 
 	$user = $db->getOne('user');
-
-
 
 	if ($user) {
 		$_SESSION['isLoggedIn'] = true;

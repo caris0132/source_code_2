@@ -3,6 +3,7 @@ $css_file = array(
 	"https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext",
 	"https://fonts.googleapis.com/icon?family=Material+Icons",
 	"plugins/bootstrap/css/bootstrap.css",
+	"plugins/bootstrap-select/css/bootstrap-select.css",
 	"plugins/node-waves/waves.css",
 	"plugins/sweetalert/sweetalert.css",
 	"plugins/animate-css/animate.css",
@@ -34,6 +35,7 @@ if ($act == 'man') {
 if ( in_array($act, ['add','edit','login']) ) {
 	array_push($css_file, "assets/bootstrap_fileinput/css/fileinput.css");
 	array_push($css_file, "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+	array_push($css_file, "plugins/multi-select/css/multi-select.css");
 	array_push($js_file, "plugins/jquery-validation/jquery.validate.js");
 	array_push($js_file, "assets/bootstrap_fileinput/js/fileinput.js");
 	array_push($js_file, "assets/bootstrap_fileinput/js/locales/vi.js");

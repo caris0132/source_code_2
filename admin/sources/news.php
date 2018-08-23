@@ -60,9 +60,12 @@ function save_edit_item()
 	$data = $_POST['data'];
 
 	$id = (int)$_POST['id'];
-
-	$data['id_danhmuc'] = (int)$data['id_danhmuc'];
-	$data['id_list'] = (int)$data['id_list'];
+	foreach ($data['danhmuc'] as $value) {
+		if ($value) {
+			$danhmuc = $value;
+		}
+	}
+	$data['id_danhmuc'] = (int)$danhmuc;
 	$data['hienthi'] = isset($data['hienthi']) ? 1 : 0;
 	$data['noibat'] = isset($data['noibat']) ? 1 : 0;
 

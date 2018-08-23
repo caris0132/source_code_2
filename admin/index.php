@@ -11,6 +11,7 @@ include_once _lib."config.php";
 include_once _lib."constant.php";
 include_once _lib."functions.php";
 include_once _lib."database.class.php";
+include_once _lib."config_type.php";
 include_once _source."router.php";
 include_once _source."admin_js_css.php";
 if($source!="") include _source.$source.".php";
