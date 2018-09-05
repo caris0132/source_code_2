@@ -36,10 +36,23 @@
 										<label for="basic_checkbox_all"></label>
 									</th>
 									<th>stt</th>
+									<?php $danhmuc_for = 0 ?>
+									<?php while ( $danhmuc_for < $config_current['danhmuc']): ?>
+										<th style="max-width: 90px">
+											<?= get_main_danhmuc($com . '_danhmuc', $type, $danhmuc_for++, $item['id_danhmuc']) ?>
+
+										</th>
+									<?php endwhile ?>
 									<th>Tên bài viết</th>
-									<th>Hình ảnh</th>
-									<th>Nỗi bật</th>
-									<th>Ẩn/Hiện</th>
+									<?php /*?>
+									<?php if ($config_current['image']): ?>
+										<th>Hình ảnh</th>
+									<?php endif ?><?php */?>
+									<?php if ($config_current['checkbox']): ?>
+										<?php foreach ($config_current['checkbox'] as $value): ?>
+											<th><?= $value ?></th>
+										<?php endforeach ?>
+									<?php endif ?>
 									<th>Thao tác</th>
 								</tr>
 							</thead>
@@ -47,13 +60,28 @@
 							<tfoot>
 								<tr>
 									<th>
-
+										<input type="checkbox" class="filled-in" id="basic_checkbox_all" />
+										<label for="basic_checkbox_all"></label>
 									</th>
 									<th>stt</th>
+									<?php $danhmuc_for = 0 ?>
+									<?php while ( $danhmuc_for < $config_current['danhmuc']): ?>
+										<th style="max-width: 90px">
+											<?= get_main_danhmuc($com . '_danhmuc', $type, $danhmuc_for++, $item['id_danhmuc']) ?>
+
+										</th>
+									<?php endwhile ?>
 									<th>Tên bài viết</th>
-									<th>Hình ảnh</th>
-									<th>Nỗi bật</th>
-									<th>Ẩn/Hiện</th>
+									<?php /*?>
+									<?php if ($config_current['image']): ?>
+										<th>Hình ảnh</th>
+									<?php endif ?>
+									<?php */?>
+									<?php if ($config_current['checkbox']): ?>
+										<?php foreach ($config_current['checkbox'] as $value): ?>
+											<th><?= $value ?></th>
+										<?php endforeach ?>
+									<?php endif ?>
 									<th>Thao tác</th>
 								</tr>
 							</tfoot>
@@ -66,26 +94,34 @@
 											<label for="basic_checkbox_<?= $item['id'] ?>"></label>
 										</td>
 										<td><input class="stt-man-input" type="number" name="" value="<?= $item['stt'] ?>" placeholder=""></td>
+										
+										<?php $danhmuc_for = 0 ?>
+										<?php while ( $danhmuc_for < $config_current['danhmuc']): ?>
+											<td>
+												<?= get_tieude_danhmuc($com . '_danhmuc', $type, $danhmuc_for++, $item['id_danhmuc']) ?>
+
+											</td>
+										<?php endwhile ?>
 										<td><a href="<?= $urlcu ?>&act=edit&id=<?= $item['id'] ?>" title="<?= $item['ten'] ?>"><?= $item['ten'] ?></a></td>
-										<td>
-											<img style="max-height: 50px" src="<?= _upload_tintuc . $item['thumb'] ?>" alt="<?= $item['ten'] ?>">
-										</td>
-										<td>
-											<div class="switch">
-												<label>
-													<input class="js-change-cell" <?= $item['noibat'] == 1 ? 'checked' : '' ?> type="checkbox" data-id="<?= $item['id'] ?>" data-table="<?= $com ?>" data-key="noibat" >
-													<span class="lever"></span>
-												</label>
-											</div>
-										</td>
-										<td>
-											<div class="switch">
-												<label>
-													<input class="js-change-cell" <?= $item['hienthi'] == 1 ? 'checked' : '' ?> type="checkbox"  data-id="<?= $item['id'] ?>" data-table="<?= $com ?>" data-key="hienthi">
-													<span class="lever"></span>
-												</label>
-											</div>
-										</td>
+										<?php /* ?>
+										<?php if ($config_current['image']): ?>
+											<td>
+												<img onerror="this.src='http://placehold.it/<?= $config_current['image']['width'] . 'x' . $config_current['image']['height'] ?>'" style="max-height: 50px" src="<?= _upload_tintuc . $item['thumb'] ?>" alt="<?= $item['ten'] ?>">
+											</td>
+										<?php endif ?>
+										<?php */ ?>
+										<?php foreach ($config_current['checkbox'] as $key => $value ): ?>
+
+											<td>
+												<div class="switch">
+													<label>
+														<input class="js-change-cell" <?= $item[$key] == 1 ? 'checked' : '' ?> type="checkbox" data-id="<?= $item['id'] ?>" data-table="<?= $com ?>" data-key="<?= $key ?>" >
+														<span class="lever"></span>
+													</label>
+												</div>
+											</td>
+											
+										<?php endforeach ?>
 										<td>
 											<a type="button" class="btn btn-success btn-circle waves-effect waves-circle waves-float" href="<?= $urlcu ?>&act=edit&id=<?= $item['id'] ?>" title="Edit" >
 												<i class="material-icons">edit</i>
@@ -105,3 +141,31 @@
 		</div>
 	</div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.select-danhmuc').change(function () {
+            var that = $(this);
+            var id_parent = $(this).val();
+            var level = +$(this).data('level') + 1;
+            var id_danhmuc_cap = '#danhmuc_cap_' + level;
+            var danhmuc_cap = $(id_danhmuc_cap);
+            if (id_parent && danhmuc_cap) {
+                $.ajax({
+                    url: 'ajax/ajax_load_danhmuc.php',
+                    type: 'POST',
+                    data: {
+                        "com": "<?= $com . '_danhmuc' ?>",
+                        'id_parent' : id_parent,
+                        'level' : level
+                    },
+                })
+                .done(function(data) {
+                    danhmuc_cap.parent().replaceWith(data);
+                    $(id_danhmuc_cap).selectpicker('render');
+                })
+
+            }
+        })
+    });
+</script>

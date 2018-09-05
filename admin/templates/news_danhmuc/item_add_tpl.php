@@ -15,9 +15,10 @@ $ds_photo = $db->get('hinhanh');
             <li><a href="" title="Home"><i class="material-icons">library_books</i> Thêm</a></li>
         </ol>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <form action="<?= $urlcu ?>&act=save" id="form_validation" method="POST" enctype="multipart/form-data">
+            <form action="<?= $urlcu ?>&act=save&level=<?= $level ?>" id="form_validation" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $_REQUEST['id'] ?>">
                 <input type="hidden" name="data[type]" value="<?= $_REQUEST['type'] ?>">
+                <input type="hidden" name="data[level]" value="<?= $_REQUEST['level'] ?>">
                 <div class="card">
                     <div class="header">
                         <h2>
@@ -34,11 +35,11 @@ $ds_photo = $db->get('hinhanh');
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                 <?php $danhmuc_for = 0 ?>
-                                <?php while ($danhmuc_for < $config_current['danhmuc']): ?>
+                                <?php while ($danhmuc_for < $level): ?>
                                     <div class="form-group form-float">
                                         <div class="col-md-6">
-                                            <h2 class="card-inside-title">Danh mục cấp <?= $key_danhmuc + 1 ?></h2>
-                                            <?= get_main_danhmuc($com . '_danhmuc', $type, $danhmuc_for++, $item['id_danhmuc']) ?>
+                                            <h2 class="card-inside-title">Danh mục cấp <?= $danhmuc_for + 1 ?></h2>
+                                            <?= get_main_danhmuc($com , $type, $danhmuc_for++, $item['id_parent']) ?>
                                         </div>
 
                                     </div>

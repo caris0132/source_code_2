@@ -37,8 +37,8 @@
                 <span>Sản phẩm</span>
             </a>
             <ul class="ml-menu">
-                <?= phanquyen_menu('Quản lý danh mục cấp 1', 'news', 'man', 'sanpham') ?>
-                <?= phanquyen_menu('Quản lý danh mục cấp 2', 'news', 'man', 'sanpham') ?>
+                <?= phanquyen_menu('Quản lý danh mục cấp 1', 'news_danhmuc', 'man', 'sanpham', 0) ?>
+                <?= phanquyen_menu('Quản lý danh mục cấp 2', 'news_danhmuc', 'man', 'sanpham', 1) ?>
                 <?= phanquyen_menu('Quản lý sản phẩm', 'news', 'man', 'sanpham') ?>
                 
             </ul>
@@ -49,8 +49,8 @@
                 <span>Bài viết</span>
             </a>
             <ul class="ml-menu">
-                <?= phanquyen_menu('Quản lý danh mục cấp 1', 'news', 'man', 'baiviet') ?>
-                <?= phanquyen_menu('Quản lý danh mục cấp 2', 'news', 'man', 'baiviet') ?>
+                <?= phanquyen_menu('Quản lý danh mục cấp 1', 'news_danhmuc', 'man', 'baiviet', 0) ?>
+                <?= phanquyen_menu('Quản lý danh mục cấp 2', 'news_danhmuc', 'man', 'baiviet', 1) ?>
                 <?= phanquyen_menu('Quản lý bài viết', 'news', 'man', 'baiviet') ?>
             </ul>
         </li>

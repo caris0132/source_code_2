@@ -6,8 +6,8 @@ if ($_POST['com'] && $_POST['id_parent']) {
 	$level = (int)$_POST['level'];
 	$com = $_POST['com'];
 	$str='
-    <select data-live-search="true" data-live-search-placeholder="Chọn danh mục" data-level="'. $level .'" id="danhmuc_cap_'. $level .'" name="data[danhmuc]['. $level .']" class="select-danhmuc" data-width="100%">
-    <option readonly>Chọn danh mục...</option>
+    <select data-live-search="true" data-live-search-placeholder="Chọn danh mục" data-level="'. $level .'" id="danhmuc_cap_'. $level .'" name="data[id_danhmuc]['. $level .']" class="select-danhmuc" data-width="100%">
+    <option value="" readonly>Chọn danh mục...</option>
     ';
 
 

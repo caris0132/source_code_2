@@ -1,7 +1,10 @@
 <?php 
+session_start();
+
 $com = (isset($_REQUEST['com'])) ? addslashes($_REQUEST['com']) : "";
 $act = (isset($_REQUEST['act'])) ? addslashes($_REQUEST['act']) : "";
 $type = (isset($_REQUEST['type'])) ? addslashes($_REQUEST['type']) : "";
+$level = (isset($_REQUEST['level'])) ? addslashes($_REQUEST['level']) : "";
 
 $curent_url = "index.php" . '?' . $_SERVER['QUERY_STRING'];
 
@@ -16,8 +19,13 @@ $urlcu .= (isset($_REQUEST['type'])) ? "&type=".addslashes($_REQUEST['type']) : 
 $urlcu .= (isset($_REQUEST['p'])) ? "&p=".addslashes($_REQUEST['p']) : "";
 
 
+$config_current = $config_type[$com][$type];
+if ($level != '') {
+	$config_current = $config_type[$com][$type][$level];
+}
 
 $db = new PDODb($config['database']);
+$imagine = new Imagine\Gd\Imagine();
 
 
 $items; $item;
@@ -33,7 +41,8 @@ if($act !='login' && !($_SESSION['login']['username'] && $_SESSION['isLoggedIn']
 $db->where('username', $_SESSION['login']['username']);
 $user = $db->getOne('user');
 if (!$user) {
-	redirect("index.php?com=user&act=logout");
+	$com = 'user';
+	$act='logout';
 }
 $id_login = $user['id'];
 $is_root = $user['is_root'];
@@ -44,6 +53,10 @@ $is_root = $user['is_root'];
 switch ($com) {
 	case 'news':
 	$source = 'news';
+	break;
+
+	case 'news_danhmuc':
+	$source = 'news_danhmuc';
 	break;
 
 	case 'user':

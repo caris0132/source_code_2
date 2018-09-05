@@ -2,18 +2,18 @@
 
 switch ($act) {
 	case 'man':
-	$items = get_items($com);
-	$template = "news/items";
+	$items = get_items($com, $level);
+	$template = "news_danhmuc/items";
 	break;
 
 	case "add":
-	$template = "news/item_add";
+	$template = "news_danhmuc/item_add";
 	break;
 
 	case "edit":
 	$id = (int)$_REQUEST['id'];
 	$item = get_item($id, $com);
-	$template = "news/item_add";
+	$template = "news_danhmuc/item_add";
 	break;
 
 	case "save":
@@ -21,7 +21,7 @@ switch ($act) {
 
 	$msg = ($result) ? 'Cập nhật thành công!' : 'Cập nhật thất bại!' ;
 
-	transfer($msg, $urlcu . "&act=man");
+	transfer($msg, $urlcu . "&act=man&level=$level");
 	
 	break;
 
@@ -30,13 +30,16 @@ switch ($act) {
 	break;
 }
 
-function get_items($com)
+function get_items($com, $level = 0)
 {
 	global $db;
 	if($_REQUEST['type']!='')
 	{
 		$db->where('type', $_REQUEST['type']);
 	}
+
+	$db->where('level', $level);
+
 	$db->orderBy("stt","ASC");
 	$db->orderBy("id","DESC");
 	$items = $db->get($com);
@@ -60,6 +63,8 @@ function save_edit_item($config_current, $com, $id_login)
 	global $db;
 
 
+
+
 	# validate dữ liệu trước khi thực thi.
 	$data = $_POST['data'];
 
@@ -69,7 +74,8 @@ function save_edit_item($config_current, $com, $id_login)
 			$danhmuc = $value;
 		}
 	}
-	$data['id_danhmuc'] = (int)$danhmuc;
+	$data['id_parent'] = (int)$danhmuc;
+	
 	foreach ($config_current['checkbox'] as $key => $value) {
 		$data[$key] = isset($data[$key]) ? $data[$key] : 0;
 	}
@@ -132,7 +138,6 @@ function save_edit_item($config_current, $com, $id_login)
 			}
 		}
 	}
-
 
 	return $id;
 }

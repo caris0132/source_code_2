@@ -33,6 +33,8 @@ function logout()
 {
 	$_SESSION['login'] = false;
 	$_SESSION['isLoggedIn'] = false;
+	
+	die();
 	transfer("Đăng xuất thành công", "index.php?com=user&act=login");
 }
 

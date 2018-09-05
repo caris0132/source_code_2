@@ -1,5 +1,5 @@
 <?php 
-
+//error_reporting(0);
 //Chuyển trang không thông báo
 function redirect($url=''){
 	echo '<script language="javascript">window.location = "'.$url.'" </script>';
@@ -198,11 +198,101 @@ function check_quyen($type, $act)
 
 }
 
-function phanquyen_menu($ten,$com,$act,$type){
+function get_main_danhmuc($com, $type, $level = 0, $id_select, $id_parent = 0)
+{
+    global $db, $config_current;
+    if (!$com || !$type) {
+        return;
+    }
+
+    $str='
+    <select data-live-search="true" data-live-search-placeholder="Chọn danh mục" data-level="'. $level .'" id="danhmuc_cap_'. $level .'" name="id_danhmuc['. $level .']" class="select-danhmuc" data-width="100%">
+    <option value="" readonly>Danh mục cấp ' . ($level + 1) . '</option>
+    ';
+    $db->where('type', $type);
+    $db->where('level', $level);
+    if ($id_parent) {
+        $db->where('id_parent', $id_parent);
+    }
+
+
+    $db->orderBy('stt', 'ASC');
+    $db->orderBy('id', 'DESC');
+    $danhmuc_cap = $db->get($com, null, 'ten, level, id_parent, id');
+
+    $origin_level = $level;
+
+    //get id_select danh mục không phải là danh mục con cuối cùng
+    while ($level < $config_current['danhmuc'] - 1) {
+        $db->where('id' ,$id_select);
+        $select = $db->getOne($com, 'ten, level, id_parent, id');
+        $id_select = $select['id_parent'] ? $select['id_parent'] : $id_select;
+
+        $id_parent--;
+        $level++;
+    }
+
+
+    
+
+    foreach ($danhmuc_cap as $item) {
+        if ($item['id'] == $id_select) {
+            $selected="selected";
+        }
+        else 
+            $selected='';
+        $str.='<option value='.$item["id"].' '.$selected.'>'.$item["ten"].'</option>';
+    }
+
+    $str.='</select>';
+    return $str;
+
+}
+
+function get_tieude_danhmuc($com, $type, $level = 0, $id_select, $id_parent = 0)
+{
+	global $db, $config_current;
+    if (!$com || !$type) {
+        return;
+    }
+
+    $origin_level = $level;
+    
+
+
+
+    //get id_select danh mục không phải là danh mục con cuối cùng
+    while ($level < $config_current['danhmuc'] - 1) {
+        $db->where('id' ,$id_select);
+        $select = $db->getOne($com, 'ten, level, id_parent, id');
+        $id_select = $select['id_parent'] ? $select['id_parent'] : $id_select;
+
+        $level++;
+    }
+
+
+
+    $db->where('type', $type);
+    $db->where('id', $id_select);
+    $db->where('level', $origin_level);
+    $db->orderBy('stt', 'ASC');
+    $db->orderBy('id', 'DESC');
+    $danhmuc_cap = $db->getOne($com, 'ten, level, id_parent, id');
+
+
+
+    return $danhmuc_cap['ten'];
+}
+
+function phanquyen_menu($ten,$com,$act,$type, $level = null){
 	global $db, $is_root;
 
+	if (!is_null($level)) {
+		$url_level = "&level=" . $level;
+	}
+
 	if ($_SESSION['isLoggedIn'] && check_quyen($type, $act)) {
-		echo  "<li><a href='index.php?com=".$com."&act=".$act."&type=".$type."'>".$ten."</a></li>";
+		echo  "<li><a href='index.php?com=".$com."&act=".$act."&type=".$type. $url_level ."'>".$ten."</a></li>";
 	}
 }
 
