@@ -1,5 +1,4 @@
 <?php 
-
 switch ($act) {
 	case "login":
 	if(!empty($_POST));
@@ -7,6 +6,7 @@ switch ($act) {
 	break;
 
 	case "logout":
+	var_dump('a');
 	logout();
 	break;
 
@@ -33,8 +33,7 @@ function logout()
 {
 	$_SESSION['login'] = false;
 	$_SESSION['isLoggedIn'] = false;
-	
-	die();
+	var_dump('a');
 	transfer("Đăng xuất thành công", "index.php?com=user&act=login");
 }
 

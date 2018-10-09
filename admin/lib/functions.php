@@ -190,7 +190,7 @@ function check_quyen($type, $act)
 {
 	global $db , $id_login, $is_root;
 
-	if ($is_root) {
+	if ($is_root || $act == 'login' || $act == 'logout' ) {
 		return true;
 	}
 

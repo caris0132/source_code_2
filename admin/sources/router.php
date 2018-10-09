@@ -30,26 +30,18 @@ $imagine = new Imagine\Gd\Imagine();
 
 $items; $item;
 
-if ($act == 'login') {
-	return;
-}
-
 if($act !='login' && !($_SESSION['login']['username'] && $_SESSION['isLoggedIn'])){
 	redirect("index.php?com=user&act=login");
 }
 
 $db->where('username', $_SESSION['login']['username']);
 $user = $db->getOne('user');
-if (!$user) {
-	$com = 'user';
-	$act='logout';
-}
+
 $id_login = $user['id'];
 $is_root = $user['is_root'];
 
+
 //get info user login
-
-
 switch ($com) {
 	case 'news':
 	$source = 'news';
