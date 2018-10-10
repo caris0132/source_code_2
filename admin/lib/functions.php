@@ -31,6 +31,21 @@ function stripUnicode($str){
 	return $str;
 }// Doi tu co dau => khong dau
 
+function dump($arr, $exit=1){
+	echo "<pre>";	
+	var_dump($arr);
+	echo "<pre>";	
+	if($exit)	exit();
+}
+
+function processInput($uri){        
+        $uri = implode('/', 
+            array_slice(
+                explode('/', $_SERVER['REQUEST_URI']), 2));         
+
+            return $uri;    
+    }
+
 function changeTitle($str)
 {
 	$str = stripUnicode($str);

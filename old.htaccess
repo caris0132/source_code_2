@@ -49,9 +49,6 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 #RewriteRule ^sitemap.xml$ upload/hinhanh/sitemap.xml [L]
 DirectoryIndex index.php
 
-# Su dung router
-#RewriteRule ^(.*)$ index.php [NC,L]
-
 ErrorDocument 400 index.html
 ErrorDocument 401 index.html
 ErrorDocument 403 index.html
@@ -82,4 +79,3 @@ RewriteRule ^([a-zA-Z0-9_-]+).html&keyword=(.*)$ index.php?com=$1&keyword=$2  [L
 RewriteRule ^([a-zA-Z0-9_-]+).html&keyword=(.*)&p=([0-9]+)$ index.php?com=$1&keyword=$2&p=$3  [L]
 
 RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).html$ index.php?com=$1&act=$2 [L]
-
